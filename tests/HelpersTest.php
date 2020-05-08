@@ -2,7 +2,7 @@
 
 namespace RaggiTech\DotArray\Test;
 
-use Orchestra\Testbench\TestCase;
+use PHPUnit\Framework\TestCase;
 use RaggiTech\DotArray\DotArray;
 
 class HelpersTest extends TestCase
