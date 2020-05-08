@@ -2,7 +2,6 @@
 
 namespace RaggiTech\DotArray\Test;
 
-
 use PHPUnit\Framework\TestCase;
 use RaggiTech\DotArray\DotArray;
 
@@ -13,10 +12,10 @@ class DotArrayTest extends TestCase
 
     /**
      * Load Dot Array
-     * 
+     *
      * @return void
      */
-    protected function setUp(): void
+    protected function setUp()
     {
         parent::setUp();
         $this->dot = new DotArray([

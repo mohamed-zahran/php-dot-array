@@ -12,13 +12,13 @@ class HelpersTest extends TestCase
 
     /**
      * Load Dot Array
-     * 
+     *
      * @return void
      */
-    protected function setUp(): void
+    protected function setUp()
     {
         parent::setUp();
-        
+
         $this->dot = new DotArray([
             [
                 'first_name'    => 'Moamen',
