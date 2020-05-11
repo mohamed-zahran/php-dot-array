@@ -6,9 +6,9 @@ use Countable, ArrayAccess, ArrayIterator, JsonSerializable, IteratorAggregate;
 
 /**
  * Dot Array Class
- * 
+ *
  * Access array data quickly/easily using dot-notation.
- * 
+ *
  * @package RaggiTech\DotArray
  * @author Moamen Eltouny <support@raggitech.com>
  * @version 0.0.2
@@ -21,8 +21,8 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
 
     /**
      * Create an new DoArray instance
-     * 
-     * @param mixed $items 
+     *
+     * @param mixed $items
      */
     public function __construct($items = [])
     {
@@ -69,7 +69,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
 
     /**
      * Clear all stored items
-     * 
+     *
      * @return void
      */
     public function clear()
@@ -79,7 +79,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
 
     /**
      * Check if a given key exists
-     * 
+     *
      * @param   string $keys
      * @return  bool
      */
@@ -111,7 +111,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
 
     /**
      * Return the value of a given key
-     * 
+     *
      * @param   string $key
      * @param   string $default
      * @return  mixed
@@ -159,7 +159,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
 
     /**
      * Set a given value to the given key
-     * 
+     *
      * @param   string                      $key
      * @param   array|int|float|string|null $value
      * @return  void
@@ -196,7 +196,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
 
     /**
      * Delete the given key
-     * 
+     *
      * @param   string $key
      * @return  bool
      */
@@ -235,8 +235,8 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
     }
 
     /**
-     * Check if the given key's value is empty 
-     * 
+     * Check if the given key's value is empty
+     *
      * @param   string|null $key
      * @return  bool
      */
@@ -247,7 +247,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
 
     /**
      * Return the value of a given key as JSON
-     * 
+     *
      * @param   string|null $key
      * @param   int         $options
      * @return  string
@@ -301,7 +301,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
     public function offsetSet($key, $value)
     {
         if (is_null($key)) {
-            $this->items[] = $value;
+            $this->_ITEMS[] = $value;
             return;
         }
         $this->set($key, $value);
@@ -321,7 +321,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
 
     /**
      * Return the number of items in a given key
-     * 
+     *
      * @return  int
      */
     public function count($key = null): int
@@ -340,7 +340,7 @@ class DotArray implements ArrayAccess, Countable, IteratorAggregate, JsonSeriali
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->items);
+        return new ArrayIterator($this->_ITEMS);
     }
 
 

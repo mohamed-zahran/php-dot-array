@@ -2,6 +2,7 @@
 
 namespace RaggiTech\DotArray\Test;
 
+use ArrayIterator;
 use PHPUnit\Framework\TestCase;
 use RaggiTech\DotArray\DotArray;
 
@@ -97,6 +98,22 @@ class DotArrayTest extends TestCase
     }
 
     /**
+     * Check isEmpty method on existed key
+     */
+    public function testIsEmptyMethodOnExistedKey()
+    {
+        $this->assertFalse($this->dot->isEmpty('0.first_name'));
+    }
+
+    /**
+     * Check isEmpty method on non existed key
+     */
+    public function testIsEmptyMethodOnNonExistedKey()
+    {
+        $this->assertTrue($this->dot->isEmpty('0.non_existed_key'));
+    }
+
+    /**
      * Check Json method
      */
     public function testJsonMethod()
@@ -117,10 +134,98 @@ class DotArrayTest extends TestCase
     }
 
     /**
+     * Check offsetExists method on existed key
+     */
+    public function testOffsetExistsMethodOnExistedKey()
+    {
+        $this->assertTrue($this->dot->offsetExists('0.first_name'));
+    }
+
+    /**
+     * Check offsetExists method on non existed key
+     */
+    public function testOffsetExistsMethodOnNonExistedKey()
+    {
+        $this->assertFalse($this->dot->offsetExists('0.non_existed_key'));
+    }
+
+    /**
+     * Check offsetGet method on existed key
+     */
+    public function testOffsetGetMethodOnExistedKey()
+    {
+        $this->assertEquals('Moamen', $this->dot->offsetGet('0.first_name'));
+    }
+
+    /**
+     * Check offsetGet method on non existed key
+     */
+    public function testOffsetGetMethodOnNonExistedKey()
+    {
+        $this->assertNull($this->dot->offsetGet('0.non_existed_key'));
+    }
+
+    /**
+     * Check offsetSet method
+     */
+    public function testOffsetSetMethod()
+    {
+        $this->dot->offsetSet('0.middle_name', 'middle_name');
+
+        $this->assertEquals('middle_name', $this->dot->offsetGet('0.middle_name'));
+    }
+
+    /**
+     * Check offsetSet method on null key
+     */
+    public function testOffsetSetMethodOnNullKey()
+    {
+        $this->assertNull($this->dot->offsetSet(null, 'middle_name'));
+    }
+
+    /**
+     * Check offsetUnset method
+     */
+    public function testOffsetUnsetMethodOnNullKey()
+    {
+        $this->dot->offsetUnset('0.first_name');
+
+        $this->assertFalse($this->dot->offsetExists('0.first_name'));
+    }
+
+    /**
+     * Check getIterator method
+     */
+    public function testGetIteratorMethod()
+    {
+        $iterator = $this->dot->getIterator();
+
+        $this->assertInstanceOf(ArrayIterator::class, $iterator);
+    }
+
+    /**
+     * Check jsonSerialize method
+     */
+    public function testJsonSerializeMethod()
+    {
+        $this->assertEquals($this->dot->all(), $this->dot->jsonSerialize());
+    }
+
+    /**
      * Check Count method
      */
     public function testCountMethod()
     {
         $this->assertEquals(2, $this->dot->count('*.first_name'));
+    }
+
+    /**
+     * Check setArray method on DotArray class instance
+     */
+    public function testSetArrayOnDotArrayInstance()
+    {
+        $dotArray = new DotArray($this->dot);
+
+        $this->assertEquals($this->dot, $dotArray);
     }
 }
